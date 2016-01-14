@@ -1,0 +1,143 @@
+﻿/* The following is custom css that will be included with your specific apps.  Feel free to add any custom css you want included in your app. */
+
+* {margin:0; padding:0; font:12px Verdana,Arial}
+code {font-family:"Courier New",Courier}
+
+#options {width:100%; margin:20px auto; text-align:right; color:#9ac1c9}
+#options a {text-decoration:none; color:#9ac1c9}
+#options a:hover {color:#033}
+
+#acc {width:100%; list-style:none; color:#033; margin:0 auto 2px}
+#acc h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; cursor:pointer; background:url(header.gif)}
+#acc h3:hover {background:url(header_over.gif)}
+#acc .acc-section {overflow:hidden; background:#fff}
+#acc .acc-content {width:100%; padding:15px; border:1px solid #9ac1c9; border-top:none; background:#fff}
+
+/* padding top right bottom left */
+/* padding top [right & left] bottom */
+
+#nested {width:90%; list-style:none; color:#033; margin:0 2px 2px}}
+#nested h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; margin-right:2px; cursor:pointer; background:url(header.gif)}
+#nested h3:hover {background:url(header_over.gif)}
+#nested .acc-section {overflow:hidden; background:#fff}
+#nested .acc-content {width:90%; padding:0px 0px 0px 10px; border:1px solid #9ac1c9; border-right:none; border-top:none; background:#fff}
+#nested .acc-selected {background:url(header_over.gif)}
+
+#acc2 {width:100%; list-style:none; color:#033; margin:0 auto 2px}
+#acc2 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; cursor:pointer; background:url(header.gif)}
+#acc2 h3:hover {background:url(header_over.gif)}
+#acc2 .acc2-section {overflow:hidden; background:#fff}
+#acc2 .acc2-content {width:100%; padding:15px; border:1px solid #9ac1c9; border-top:none; background:#fff}
+
+
+#nested2 {width:90%; list-style:none; color:#033; margin:0 2px 2px}}
+#nested2 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; margin-right:2px; cursor:pointer; background:url(header.gif)}
+#nested2  h3:hover {background:url(header_over.gif)}
+#nested2 .acc2-section {overflow:hidden; background:#fff}
+#nested2 .acc2-content {width:90%; padding:0px 0px 0px 10px; border:1px solid #9ac1c9; border-right:none; border-top:none; background:#fff}
+#nested2 .acc2-selected {background:url(header_over.gif)}
+
+
+#acc3 {width:100%; list-style:none; color:#033; margin:0 auto 2px}
+#acc3 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; cursor:pointer; background:url(header.gif)}
+#acc3 h3:hover {background:url(header_over.gif)}
+#acc3 .acc3-section {overflow:hidden; background:#fff}
+#acc3 .acc3-content {width:100%; padding:15px; border:1px solid #9ac1c9; border-top:none; background:#fff}
+
+
+#nested3 {width:90%; list-style:none; color:#033; margin:0 2px 2px}}
+#nested3 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; margin-right:2px; cursor:pointer; background:url(header.gif)}
+#nested3  h3:hover {background:url(header_over.gif)}
+#nested3 .acc3-section {overflow:hidden; background:#fff}
+#nested3 .acc3-content {width:90%; padding:0px 0px 0px 10px; border:1px solid #9ac1c9; border-right:none; border-top:none; background:#fff}
+#nested3 .acc3-selected {background:url(header_over.gif)}
+
+
+#acc4 {width:100%; list-style:none; color:#033; margin:0 auto 2px}
+#acc4 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; cursor:pointer; background:url(header.gif)}
+#acc4 h3:hover {background:url(header_over.gif)}
+#acc4 .acc4-section {overflow:hidden; background:#fff}
+#acc4 .acc4-content {width:100%; padding:15px; border:1px solid #9ac1c9; border-top:none; background:#fff}
+
+
+#nested4 {width:90%; list-style:none; color:#033; margin:0 2px 2px}}
+#nested4 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; margin-right:2px; cursor:pointer; background:url(header.gif)}
+#nested4  h3:hover {background:url(header_over.gif)}
+#nested4 .acc4-section {overflow:hidden; background:#fff}
+#nested4 .acc4-content {width:90%; padding:0px 0px 0px 10px; border:1px solid #9ac1c9; border-right:none; border-top:none; background:#fff}
+#nested4 .acc4-selected {background:url(header_over.gif)}
+
+
+#acc5 {width:100%; list-style:none; color:#033; margin:0 auto 2px}
+#acc5 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; cursor:pointer; background:url(header.gif)}
+#acc5 h3:hover {background:url(header_over.gif)}
+#acc5 .acc5-section {overflow:hidden; background:#fff}
+#acc5 .acc5-content {width:100%; padding:15px; border:1px solid #9ac1c9; border-top:none; background:#fff}
+
+
+#nested5 {width:90%; list-style:none; color:#033; margin:0 2px 2px}}
+#nested5 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; margin-right:2px; cursor:pointer; background:url(header.gif)}
+#nested5  h3:hover {background:url(header_over.gif)}
+#nested5 .acc5-section {overflow:hidden; background:#fff}
+#nested5 .acc5-content {width:90%; padding:0px 0px 0px 10px; border:1px solid #9ac1c9; border-right:none; border-top:none; background:#fff}
+#nested5 .acc5-selected {background:url(header_over.gif)}
+
+
+#acc6 {width:100%; list-style:none; color:#033; margin:0 auto 2px}
+#acc6 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; cursor:pointer; background:url(header.gif)}
+#acc6 h3:hover {background:url(header_over.gif)}
+#acc6 .acc6-section {overflow:hidden; background:#fff}
+#acc6 .acc6-content {width:100%; padding:15px; border:1px solid #9ac1c9; border-top:none; background:#fff}
+
+
+#nested6 {width:90%; list-style:none; color:#033; margin:0 2px 2px}}
+#nested6 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; margin-right:2px; cursor:pointer; background:url(header.gif)}
+#nested6  h3:hover {background:url(header_over.gif)}
+#nested6 .acc6-section {overflow:hidden; background:#fff}
+#nested6 .acc6-content {width:90%; padding:0px 0px 0px 10px; border:1px solid #9ac1c9; border-right:none; border-top:none; background:#fff}
+#nested6 .acc6-selected {background:url(header_over.gif)}
+
+
+#acc7 {width:100%; list-style:none; color:#033; margin:0 auto 2px}
+#acc7 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; cursor:pointer; background:url(header.gif)}
+#acc7 h3:hover {background:url(header_over.gif)}
+#acc7 .acc7-section {overflow:hidden; background:#fff}
+#acc7 .acc7-content {width:100%; padding:15px; border:1px solid #9ac1c9; border-top:none; background:#fff}
+
+
+#nested7 {width:90%; list-style:none; color:#033; margin:0 2px 2px}}
+#nested7 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; margin-right:2px; cursor:pointer; background:url(header.gif)}
+#nested7  h3:hover {background:url(header_over.gif)}
+#nested7 .acc6-section {overflow:hidden; background:#fff}
+#nested7 .acc6-content {width:90%; padding:0px 0px 0px 10px; border:1px solid #9ac1c9; border-right:none; border-top:none; background:#fff}
+#nested7 .acc6-selected {background:url(header_over.gif)}
+
+
+#acc8 {width:100%; list-style:none; color:#033; margin:0 auto 2px}
+#acc8 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; cursor:pointer; background:url(header.gif)}
+#acc8 h3:hover {background:url(header_over.gif)}
+#acc8 .acc8-section {overflow:hidden; background:#fff}
+#acc8 .acc8-content {width:100%; padding:15px; border:1px solid #9ac1c9; border-top:none; background:#fff}
+
+
+#nested8 {width:90%; list-style:none; color:#033; margin:0 2px 2px}}
+#nested8 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; margin-right:2px; cursor:pointer; background:url(header.gif)}
+#nested8  h3:hover {background:url(header_over.gif)}
+#nested8 .acc8-section {overflow:hidden; background:#fff}
+#nested8 .acc8-content {width:90%; padding:0px 0px 0px 10px; border:1px solid #9ac1c9; border-right:none; border-top:none; background:#fff}
+#nested8 .acc8-selected {background:url(header_over.gif)}
+
+#acc9 {width:100%; list-style:none; color:#033; margin:0 auto 2px}
+#acc9 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; cursor:pointer; background:url(header.gif)}
+#acc9 h3:hover {background:url(header_over.gif)}
+#acc9 .acc9-section {overflow:hidden; background:#fff}
+#acc9 .acc9-content {width:100%; padding:15px; border:1px solid #9ac1c9; border-top:none; background:#fff}
+
+#nested9 {width:90%; list-style:none; color:#033; margin:0 2px 2px}}
+#nested9 h3 {width:100%; border:1px solid #9ac1c9; padding:2px 2px 2px; font-weight:bold; margin-top:2px; margin-right:2px; cursor:pointer; background:url(header.gif)}
+#nested9  h3:hover {background:url(header_over.gif)}
+#nested9 .acc9-section {overflow:hidden; background:#fff}
+#nested9 .acc9-content {width:90%; padding:0px 0px 0px 10px; border:1px solid #9ac1c9; border-right:none; border-top:none; background:#fff}
+#nested9 .acc9-selected {background:url(header_over.gif)}
+
+#tblSet td{border:none}

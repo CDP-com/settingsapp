@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- ************************************************ -->
+<!-- START: Necessary Meta - DO NOT EDIT THIS SECTION -->
+<!-- ************************************************ -->
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+<meta http-equiv="x-ua-compatible" content="ie=Edge">
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="Expires" CONTENT="100">
+<meta name="robots" content="noindex,nofollow,noarchive,noodp,noimageindex,nomediaindex" />
+<!-- ************************************************ -->
+<!--                 END: Necessary Meta              -->
+<!-- ************************************************ -->
+
+
+<!-- ************************************************ -->
+<!-- START: Common Scripts - DO NOT EDIT THIS SECTION -->
+<!-- ************************************************ -->
+<script type="text/javascript" src="../common/template/common-scripts.js"></script>
+<!-- ************************************************ -->
+<!--                END: Common Scripts               -->
+<!-- ************************************************ -->
+
+
+<!-- ************************************************ -->
+<!--        START: App Title - Edit This Section      -->
+<!-- ************************************************ -->
+<title>Platform Setting | SnapBack Apps</title>
+<!-- ************************************************ -->
+<!--                  END: App Title                  -->
+<!-- ************************************************ -->
+
+<!-- ************************************************ -->
+<!--             START: App Specific Files            -->
+<!--        Add Any of Your Custom Javascript,        --> 
+<!--   Custom CSS, and Other App Specific Files Here  -->
+<!-- ************************************************ -->  
+<link rel="stylesheet" type="text/css" media="all" href="app-style.css"/>  
+<link rel="stylesheet" type="text/css" media="all" href="custom-style.css"/>  
+<script type="text/javascript" src="app-lib.js"></script>
+<!-- ************************************************ -->  
+<!--               END: App Script Files              -->
+<!-- ************************************************ -->
+
+<!-- ************************************************ -->
+<!--START: Required Scripts - DO NOT EDIT THIS SECTION-->
+<!-- ************************************************ -->
+<script type="text/javascript">
+
+var oTest = new ActiveXObject("wscript.shell");
+	DName = oTest.ExpandEnvironmentStrings("%COMPUTERNAME%") 
+	UName = oTest.ExpandEnvironmentStrings("%USERNAME%") 
+	oTest = null;
+	
+	if (IsAdmin(DName, UName)) { 
+	var Admin = "Yes"
+	} 	
+	else  	
+	{
+	var Admin = "No"
+	};
+	//alert(Admin);
+	
+// globals
+	var menuarray = new Array();
+	
+		try {
+	// this is to test to see if any admin changes has been made 
+	    var AllowAdminLastModifiedDate = GetButtonIniValue(appname, 0, "AllowAdminLastModifiedDate")
+	} catch (e) {
+		InitializePermissions();
+		SetButtonIniValue(appname, 0, "DefaultAllowAdmin", btn0_DefaultAllowAdmin, "REG_DWORD"); 
+		SetButtonIniValue(appname, 0, "DefaultCaution", btn0_DefaultCaution, "REG_DWORD"); 
+		SetButtonIniValue(appname, 0, "DefaultAllowUser", btn0_DefaultAllowUser, "REG_DWORD"); 
+		SetButtonIniValue(appname, 0, "AllowAdminLastModifiedDate", btn0_LastModifiedAllowAdmin, "REG_SZ"); 
+		SetButtonIniValue(appname, 0, "CurrentAllowAdmin", btn0_CurrentAllowAdmin, "REG_DWORD"); 
+		SetButtonIniValue(appname, 0, "CurrentAllowUser", btn0_CurrentAllowUser, "REG_DWORD"); 
+		SetButtonIniValue(appname, 0, "CurrentCaution", btn0_CurrentCaution, "REG_DWORD"); 
+		SetButtonIniValue(appname, 0, "AllowUserLastModifiedDate", btn0_LastModifiedAllowUser, "REG_SZ"); 
+		SetButtonIniValue(appname, 0, "CautionLastModifiedDate", btn0_LastModifiedCaution, "REG_SZ");
+	} 
+	
+	if (!AllowAdminLastModifiedDate){
+	// this Initializes on first run 
+		InitializePermissions();
+		SetButtonIniValue(appname, 0, "DefaultAllowAdmin", btn0_DefaultAllowAdmin, "REG_DWORD"); 
+		SetButtonIniValue(appname, 0, "DefaultCaution", btn0_DefaultCaution, "REG_DWORD"); 
+		SetButtonIniValue(appname, 0, "DefaultAllowUser", btn0_DefaultAllowUser, "REG_DWORD"); 
+		SetButtonIniValue(appname, 0, "AllowAdminLastModifiedDate", btn0_LastModifiedAllowAdmin, "REG_SZ"); 
+		SetButtonIniValue(appname, 0, "CurrentAllowAdmin", btn0_CurrentAllowAdmin, "REG_DWORD"); 
+		SetButtonIniValue(appname, 0, "CurrentAllowUser", btn0_CurrentAllowUser, "REG_DWORD"); 
+		SetButtonIniValue(appname, 0, "CurrentCaution", btn0_CurrentCaution, "REG_DWORD"); 
+		SetButtonIniValue(appname, 0, "AllowUserLastModifiedDate", btn0_LastModifiedAllowUser, "REG_SZ"); 
+		SetButtonIniValue(appname, 0, "CautionLastModifiedDate", btn0_LastModifiedCaution, "REG_SZ");
+	}
+		
+		
+	var buttonnametext = "buttonname0"
+	var DefaultAllowAdmin = GetButtonIniValue(appname, 0, "DefaultAllowAdmin") 
+	var CautionDefault = GetButtonIniValue(appname, 0, "DefaultCaution")
+	var AllowUserLastModifiedDate = GetButtonIniValue(appname, 0, "AllowUserLastModifiedDate") 
+	var CautionLastModifiedDate   = GetButtonIniValue(appname, 0, "CautionLastModifiedDate")  
+			
+	var GlobalCurrentCaution = GetGlobalIniValue("CurrentCaution")
+	if (GlobalCurrentCaution == 1)
+		{ 
+		var CheckBoxGlobalCaution  =  "<input type='checkbox' ='GlobalCaution' checked onclick='ChangeGlobalCautionUnChecked(this);' CheckBoxStatus>&nbsp;Do not check for Caution Flag which is used primarily for Beta Apps."
+		}
+	if (GlobalCurrentCaution == 0)
+	    { 
+		var CheckBoxGlobalCaution  =  "<input type='checkbox' id='GlobalCaution' onclick='ChangeGlobalCautionChecked(this);'>&nbsp;Do not check for Caution Flag which is used primarily for Beta Apps."
+		}
+		
+	var CurrentAllowUser = GetButtonIniValue(appname, 0, "CurrentAllowUser")
+	if (CurrentAllowUser == 1)
+		{ 
+		var CheckBoxAllowUser =  "<input type='checkbox' id='CurrentAllowUser' checked onclick='CurrentAllowUserChecked(0);'>"
+		}
+	if (CurrentAllowUser == 0)
+		{ 
+		var CheckBoxAllowUser =  "<input type='checkbox' id='CurrentAllowUser' onclick='CurrentAllowUserChecked(0);'>"
+		}
+
+	var ButtonAllowAdmin = GetButtonIniValue(appname, 0, "CurrentAllowAdmin")
+	if (ButtonAllowAdmin == 1)
+		{ 
+		var CheckBoxButtonAllowAdmin  =  "<input type='checkbox' id='ButtonAllowAdmin' checked onclick='AllowAdminChecked(0);'>"
+		}
+	if (ButtonAllowAdmin == 0) 
+		{ 
+		var CheckBoxButtonAllowAdmin  =  "<input type='checkbox' id='ButtonAllowAdmin' onclick='AllowAdminChecked(0);'>"
+		}
+	var CurrentCaution  = GetButtonIniValue(appname, 0, "CurrentCaution")
+	if (CurrentCaution == 1)
+		{ 
+		var CheckBoxCurrentCaution =  "<input type='checkbox' id='CurrentCaution' checked CheckBoxStatus onclick='CurrentCautionChecked(0);'>"
+		}
+	if (CurrentCaution == 0)
+		{ 
+		var CheckBoxCurrentCaution =  "<input type='checkbox' id='CurrentCaution' onclick='CurrentCautionChecked(0);'><br>"
+		}					
+</script>
+<script type="text/javascript">	  
+      function getRelativeURL()
+      {
+         var relURL = "";
+         var strhref = document.location.href;
+         var array_url = strhref.split('/');
+         var arraylength = array_url.length;
+         if (arraylength > 2)
+         {
+            relURL = "../" + array_url[arraylength - 2] + "/" + array_url[arraylength - 1];
+         }
+         else
+         {
+            relURL = document.location.href;
+         }
+         
+         if (relURL.indexOf("#") > -1)
+         {
+            relURL = relURL.substring(0, relURL.indexOf("#"));
+         }
+         
+         if (relURL.indexOf("?") > -1)
+         {
+            relURL = relURL.substring(0, relURL.indexOf("?"));
+         }
+
+         return relURL;
+      }
+		
+      //var nodeURL = getUrlParts(document.location.href).search;
+		var treemenu01;
+
+		function loadTree(divid,treeName,nodeURL,jv){
+		//alert();
+		//alert ("In initTree()");
+			var str="";
+			var tmptree;
+		// divid == tree[treeName] == var name for the treemenu
+		// jsonVar == eval(treeName);
+		// nodeURL = string node url, this is the node that the tree will be opened to and focused on
+			tmptree = new cdpTree(divid,treeName,nodeURL);
+			tmptree.readScript(jv).renderTree();
+
+			tmptree.setKeyEvent(divid);
+			treemenu01=tmptree;
+			menuarray[divid]= tmptree;
+		}
+      
+      function pageScroll() {
+         window.scrollTo(0,top);
+         scrolldelay = setTimeout('pageScroll()', 200);
+      }
+
+      window.onload = function(){
+         var treemenuobj = document.getElementById('treemenu01');
+         if (treemenuobj)
+         {
+            if (document.getElementById('treemenu01').visible)
+               document.getElementById('treemenu01').focus();
+         }
+		 
+		
+		try {
+		GetCurrentUserLastLModifiedDate()	
+		}
+		catch (err) {
+		var Tripped = "<table cellpadding=2 cellspacing=2 width=%50><tr><td colspan=2><h3>Global Settings Buttons Not Enabled - Talk to Your Administrator</h3></td></tr><tr><td width=50%><input type='checkbox' name='radiobtn' disabled='disabled' onclick='ChangeSetGlobal();'>Global Set Current</td><td width=50%><input type='checkbox' name='radiobtn' disabled='disabled' checked='checked' onclick='ChangeGlobalInDefault();'>Global Set Default</td></tr></table>"
+		}	
+		   
+      }
+
+</script>
+
+
+	
+<script>
+    $(document).ready(function() {
+        $('.menu-link').bigSlide();
+    });
+</script>
+<script type="text/javascript" src="../common/scripts/onlinecheck.js"></script>
+<!-- ************************************************ -->
+<!--               END: Required Scripts              -->
+<!-- ************************************************ -->
+</head>
+<body>
+
+
+
+
+
+<!-- ************************************************ -->
+<!--  START: Left Sidebar - DO NOT EDIT THIS SECTION  -->
+<!-- ************************************************ -->
+
+<script type="text/javascript" src="../common/template/sidebar1.js"></script>
+
+	<script type="text/javascript">
+		var nodeURL = getRelativeURL();
+			loadTree('treemenu01', 'menu01', nodeURL, menu01);
+	</script>
+
+<script type="text/javascript" src="../common/template/sidebar2.js"></script>
+
+<!-- ************************************************ -->
+<!--                 END: Left Sidebar                -->
+<!-- ************************************************ -->
+
+
+
+
+
+<!-- ************************************************ -->
+<!--      START: Page Content - Edit this Section     -->
+<!-- ************************************************ -->
+<div id="app-intro">
+	<div class="app-name">
+		Settings 
+	</div><!--End #app-name-->
+	
+	<div class="producer-credits">
+		<img src="../common/media/default-group-icon.png" alt="Group Name"/>
+		<a id="connect" href="http://factory.snapback-apps.com/app/new-app-template/" title="Connect with the Developers of this App"><!--Include a Link to your App's Connect Page-->
+		Produced by the App Helpers Group<br />
+		Suggest / Contribute / Get Help
+		</a>
+	</div><!--End #producer-credits-->
+</div><!--End #app-intro-->
+
+<div id="tab-container">
+<div id="tabnav">
+		<ul class="tabs">
+			<li><a href="#tab1" title="Run this App from Here">App Home</a></li>
+			<li><a href="#tab2" title="The technical details of what this App does">How it Works</a></li>
+			<li><a href="#tab3" title="This App is free to Use">Pricing</a></li>
+			<li><a href="#tab4" title="Record of Each Committee's work and report to users">What's Certified</a></li>
+		</ul>
+		<span></span>
+	</div><!--End #tabs-->
+</div><!--End #tab-container -->
+
+<div id="content-container">
+	<div id="tab1">
+		
+		
+		<p><strong>Platform Settings Overview: </strong></p>
+			<ol>
+				<li>SnapBack Users set permissions and options for the platform here</li>
+				<li>This app is for all users of SnapBack</li>
+			</ol>
+											
+		
+		<p>The "Settings" app allows you to configure certain features within the SnapBack Apps platform.  See the below list of features and their options.</p>
+
+
+  <ul class="acc" id="acc">
+  <li>
+		<h3>SnapBacks Apps Platform Information</h3>
+		<div class="acc-section">
+			<div class="acc-content">
+				Version Number : 123.456.789<br>
+					
+				Notes : 
+			</div>
+		</div>
+	</li>
+
+	<li>
+      <h3>Platform Preferences</h3>
+
+      <div class="acc2-section">
+        <div class="acc2-content">
+          <table class="tblSettings" id="tblSet" ><col width="10%"><col width="40%"><col width="50%">
+            <tr>
+              <td>Language</td>
+
+              <td><select>
+                <option value="english">
+                  English
+                </option>
+
+                <option value="spanish">
+                  Espa&ntilde;o
+                </option>
+
+                <option value="italian">
+                  Italiano
+                </option>
+
+                <option value="portuguese">
+                  Portugu&ecirc;s
+                </option>
+              </select></td>
+            </tr>
+
+            <tr>
+              <td>Autostart</td>
+
+              <td><input type="checkbox" name="" id="" />&nbsp;Automatically Start when you login to Windows</td>
+			  <td width=50%>
+                <ul class="acc3" id="nested3"><li>
+				<h3>Why Do This?</h3>
+						<div class="acc3-section">
+							<div class="acc3-content">
+								SnapBack Apps themselves can be opened anytime from either the icon in the tray, or WIN+ALT keys, when you want to find and run any SnapBack App.  But often, navigating to run specific apps on a daily basis would be a chore.  <br> &nbsp;<br>
+								Start SnapBack when Windows starts, at least for a while.  Our handy "MyMenu" Tabs provide the fastest and easiest way to find, organize and run your own applications or web shortcuts, or any frequently used SnapBack Apps.  
+
+							</div>
+						</div>
+						</li>
+						</ul>
+			</td>
+            </tr>
+
+            <tr>
+              <td>HotKeys</td>
+
+              <td><input type="checkbox" name="" id="" />&nbsp;Enable HotKeys to start the platform</td>
+			   <td width=50%>
+			                  <ul class="acc4" id="nested4"><li>
+				<h3>Why Do This?</h3>
+						<div class="acc4-section">
+							<div class="acc4-content">
+								If you are using MyMenu tabs often, consider using the Windows key to open SnapBack. 
+
+							</div>
+						</div>
+						</li>
+						</ul>
+				</td>
+            </tr>
+
+            <tr>
+              <td>AutoUpdate</td>
+
+              <td><input type="checkbox" name="" id="" />&nbsp;Keep SnapBack Apps Updated</td>
+			  			   <td width=50%>
+			                  <ul class="acc5" id="nested5"><li>
+				<h3>Why Do This?</h3>
+						<div class="acc5-section">
+							<div class="acc5-content">
+								Keeping SnapBack updated at all times saves your PC from slowdowns created when you can't control when and how all the other applications and Windows decide when and how to download and install their updates.   Snapback gives you back control of when and how updates are done, and coordinates updates with your schedule.  This saves your internet speed, memory use, applications shutting down when you are using them.  Even worse, Windows sometimes decides it will reboot, even when you have unsaved work still open!    
+  <br> &nbsp;<br>
+								SnapBack's updates are extremely small and won't consume much internet use or disk space.  
+
+							</div>
+						</div>
+						</li>
+						</ul>
+				</td>
+            </tr>
+
+            <tr>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </li>
+
+<li>
+      <h3>Application Settings</h3>
+
+      <div class="acc6-section">
+        <div class="acc6-content">
+       <script type="text/javascript">document.write(CheckBoxGlobalCaution)</script>
+       
+        </div>
+		
+      </div>
+    </li>
+	
+						
+	</div><!--End Tab1-->
+						
+	<div id="tab2">
+	
+<div id="options">
+	<a href="javascript:parentAccordion.pr(1)">Expand All</a> | <a href="javascript:parentAccordion.pr(-1)">Collapse All</a>
+</div>
+
+  <ul class="acc" id="acc">
+ <li>
+		<h3><script type="text/javascript">document.write(appname)</script>  Information and Permissions</h3>
+		<div class="acc-section">
+		</div>
+	</li>
+  
+    
+    <li>
+      <h3>Administrator Settingss</h3>
+
+      <div class="acc-section">
+        <div class="acc-content">
+          <table class="tblSettings" id="tblSet" ><col width="10%"><col width="40%"><col width="50%">
+            <tr>
+			<TABLE cellpadding=3 cellspacing=3 ><th>&nbsp;Button Name&nbsp;</th><th>&nbsp;Admin Can Run&nbsp;</th><th>&nbsp;Normal User Can Run&nbsp;</th><th>&nbsp;Caution or Beta - but you Can Run&nbsp;</th>
+			<tr>
+			<td>&nbsp;<script type="text/javascript">document.write(buttonnametext);</script> </td>
+			<td>&nbsp;<script type="text/javascript">document.write(CheckBoxButtonAllowAdmin);</script></td> 
+			<td>&nbsp;<script type="text/javascript">document.write(CheckBoxAllowUser);</script></td>
+			<td>&nbsp;<script type="text/javascript">document.write(CheckBoxCurrentCaution); </script></td>
+			</tr>
+			</table>
+     	  <td width=50%>
+                <ul class="acc2" id="nested2"><li>
+				<h3>Open this section to modify each of this app's button permissions</h3>
+						<div class="acc2-section">
+							<div class="acc2-content">
+								Open this section to modify each of this app's button permissions to change the caution for     
+								"all users, or to change the settings to allow or dis-allow a button for a "non-admin group" user, or to totally disable this app.    You must be in the admin group to modify any of these settings.  Both the "ENABLE and the "CAUTION FLAG" applies to admins as well as non-admins.
+								<table><th>BUTTON NAME</th><th>NO Caution?</th><th>Allow Non-Admins to Run?</th><th>ENABLE?</th>
+								<tr><td>Delete-snapshots</td><td>N</td><td>N</td><td>Y</td></tr>
+								<tr><td>Create Snapshot</td><td>Y</td><td>Y</td><td>Y</td></tr>
+								</table>
+							</div>
+						</div>
+						</li>
+						</ul>
+			</td>
+            </tr>
+            
+          </table>
+        </div>
+      </div>
+    </li>
+
+    
+	
+    
+      
+  </ul>
+      				
+</div><!--End Tab2-->
+	
+
+
+
+
+</div><!--End content-container-->    		
+<!-- ************************************************ -->
+<!--                 END: Page Content                -->
+<!-- ************************************************ -->
+
+
+
+
+
+<!-- ************************************************ -->
+<!--      START: Footer - DO NOT EDIT THIS SECTION    -->
+<!-- ************************************************ -->
+<script type="text/javascript" src="../common/template/footer.js"></script>
+<!-- ************************************************ -->
+<!--                    END: Footer                   -->
+<!-- ************************************************ -->
+
+
+
+
+
+<!-- ************************************************ -->
+<!-- START: Required Web Page Logic close of body tag -->
+<!-- DO NOT EDIT THIS SECTION EXCEPT FOR WHERE NOTED  -->
+<!-- ************************************************ -->
+<script type="text/javascript">
+   // DEVELOPER NOTE: Set number of CDP buttons for page
+   var nCDPButtons = 3;  //Number of buttons for page.
+   // Global array of button objects inheriting from CDPButton class
+   var oButtonsArray = [];
+   oButtonsArray.length = nCDPButtons;  //Number of buttons for page. Array elements start with zero, so 3 buttons have elements 0 - 2.
+</script>
+<script type="text/javascript" src="../common/scripts/cdp-uri.js"></script>
+<script type="text/javascript">
+   <!--
+   // Globals used by ../common/webpagelogic.js
+   // DEVELOPER NOTE: Developer needs to set the next value
+   
+   var PackageName = appname;
+   // var PackageName = "apptemplate";
+
+	// DEVELOPER NOTE: Next value can be set, but is optional
+   var DemoPageName = "";	// Leave this blank or use an independent html file.
+   
+   var LivePageName = "main.html";
+   
+   var ButtonCount = oButtonsArray.length;
+   var oWPLogic;
+   /* Next initialization is the function name in [packagename]lib.js that runs when the "?run=1" parameter is included in the url */
+   var RunableFunction = "runapp()";
+   loadScript("../common/scripts/webpagelogic.js", function()
+   {
+      // Initialization code for instantiation of web page object
+      oWPLogic = new Webpage(PackageName, DemoPageName, LivePageName, ButtonCount);    //Function in ../common/webpagelogic.js
+      
+      snAppPage(oWPLogic);
+//      oWPLogic.isLocal = false;   //Uncomment this line to force online behavior
+
+      if (oWPLogic.isLocal)
+      {
+         /* No code here right now. */
+      }
+      else
+      {
+         /* Set oWPLogic properties from cdpbutton# divs */
+         fnGetAttributes(oWPLogic);
+         fnMakeCdpButtons(oWPLogic);
+      }
+   });
+   // -->
+</script>
+
+
+
+<!-- ********************************************** -->
+<!-- END: Required Web Page Logic close of body tag -->
+<!-- ********************************************** -->
+ 
+
+
+
+<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript">
+var parentAccordion=new TINY.accordion.slider("parentAccordion");
+parentAccordion.init("acc","h3",0,0);
+parentAccordion.pr(1);
+
+//var nestedAccordion=new TINY.accordion.slider("nestedAccordion");
+//nestedAccordion.init("nested","h3",1,-1,"acc-selected");
+
+var nestedAccordion2=new TINY.accordion.slider("nestedAccordion2");
+nestedAccordion2.init("nested2","h3",1,-1,"acc2-selected");
+
+var nestedAccordion3=new TINY.accordion.slider("nestedAccordion3");
+nestedAccordion3.init("nested3","h3",1,-1,"acc3-selected");
+
+var nestedAccordion4=new TINY.accordion.slider("nestedAccordion4");
+nestedAccordion4.init("nested4","h3",1,-1,"acc4-selected");
+
+var nestedAccordion5=new TINY.accordion.slider("nestedAccordion5");
+nestedAccordion5.init("nested5","h3",1,-1,"acc5-selected");
+
+//var nestedAccordion6=new TINY.accordion.slider("nestedAccordion6");
+//nestedAccordion6.init("nested6","h3",1,-1,"acc6-selected");
+
+//var nestedAccordion7=new TINY.accordion.slider("nestedAccordion7");
+//nestedAccordion7.init("nested7","h3",1,-1,"acc7-selected");
+
+</script>
+
+</body>
+
+</html> 
+
